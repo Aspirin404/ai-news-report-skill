@@ -175,30 +175,47 @@ body {
 - **Right sidebar meta** (desktop only): "ITEMS IN THIS SECTION" (mono, tiny, uppercase) + item count as large mono number
 - News cards in responsive grid (2-3 columns)
 
+#### News Card Grid Layout
+
+Highlighted items are emphasized through **SIZE, not color**. Use an asymmetric grid:
+
+```
+┌──────────────────────────────┐  ┌──────────────────┐
+│  KEY item (large card)       │  │  Normal item     │
+│  ~60% width, more padding   │  │  ~40% width      │
+│  more whitespace, breathing │  │  compact          │
+└──────────────────────────────┘  └──────────────────┘
+┌──────────────────────────────┐  ┌──────────────────┐
+│  KEY item (large card)       │  │  Normal item     │
+└──────────────────────────────┘  └──────────────────┘
+```
+
+Implementation: CSS grid with `grid-template-columns: 3fr 2fr` (desktop). KEY items go in the left (wider) column, non-KEY items go in the right (narrower) column.
+
 #### News Card Structure
 
 Each card is a bordered rectangle with clear visual hierarchy:
 
 ```
 ┌─────────────────────────────────────────┐
-│ ● 01 · 05-12   [标签]           KEY     │  ← top strip (mono, uppercase)
+│ ● 01 · 05-12                    KEY     │  ← top strip (mono, uppercase)
 │                                         │
 │ Card Title Here                         │  ← weight 500 (Medium), 18-22px
 │                                         │
 │ Card body text lorem ipsum dolor sit    │  ← weight 400 (Regular), 14-16px
 │ amet, line-height 1.7-1.8, muted color │     line-height 1.7-1.8
 │                                         │
+│─────────────────────────────────────────│  ← hairline divider
 │ SOURCE NAME              READ ↗         │  ← mono, uppercase, 11-12px
 └─────────────────────────────────────────┘
 ```
 
-- **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) + optional tag pill on left; `KEY` text on right for highlighted items
-- **Tag pill**: outline border style (`border border-border rounded px-2 py-0.5 text-[10px] font-mono uppercase`), NOT filled background
-- **KEY indicator**: plain accent-colored text "KEY" (`text-accent font-mono text-[10px] uppercase tracking-[0.2em]`), NOT a filled badge, NOT a colored left border
-- **Title**: font-weight 500 (Medium), NOT bold/700. Heavier than body but still medium.
+- **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) on left; `KEY` text on right for highlighted items only
+- **KEY indicator**: plain accent-colored text "KEY" (`text-accent font-mono text-[10px] uppercase tracking-[0.2em]`) — this is the ONLY visual marker for importance. No colored borders, no background tints.
+- **Title**: font-weight 500 (Medium), NOT bold/700.
 - **Body**: font-weight 400, muted foreground, relaxed line-height (1.7-1.8)
-- **Footer**: source name (mono, uppercase, muted) on left + "READ ↗" link on right (mono, uppercase)
-- **All cards have identical borders**: `border border-border` — no special border treatment for highlighted items
+- **Footer**: separated by a hairline divider (`border-t border-border`). Source name (mono, uppercase, muted) on left + "READ ↗" link on right
+- **All cards have identical border style**: `border border-border` — the SIZE difference (grid position) conveys importance, not border styling
 - **Hover**: subtle `translateY(-2px)` lift + shadow
 - Links to sourceUrl when available
 
