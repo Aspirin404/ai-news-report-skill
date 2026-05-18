@@ -104,7 +104,7 @@ body {
 
 | Role | Tailwind Classes | Notes |
 |------|-----------------|-------|
-| Hero title | `text-3xl md:text-5xl lg:text-6xl font-light leading-[1.05] tracking-[-0.03em]` | Weight 300 (Light). Max `text-6xl` (3.75rem). Per-character stagger animation. Accent-colored portion + trailing `.`. Must NOT exceed 4rem. |
+| Hero title | `text-4xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em]` | Weight 300 (Light). Per-character stagger animation. Accent-colored portion + trailing `.` |
 | Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Append accent `.` dot. |
 | Trend heading | `max-w-5xl text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Same as section titles |
 | Trend numbers | `text-5xl md:text-7xl font-light leading-none tracking-tighter` | accent color or foreground, hover → accent |
@@ -146,7 +146,7 @@ body {
 
 ### 2. Hero Section
 
-- Full viewport height (`min-h-screen`)
+- **NOT** full viewport height — use `pt-24 pb-16 md:pt-32 md:pb-24` padding instead of `min-h-screen`
 - Subtle dot grid background (35% opacity wrapper):
   ```css
   background-image: radial-gradient(hsl(var(--foreground) / 0.18) 1px, transparent 1.4px);
@@ -154,9 +154,10 @@ body {
   ```
 - Bottom fade gradient: `bg-gradient-to-b from-transparent to-background`
 - **Hero title**: `font-light leading-[1.05] tracking-[-0.03em]`
-  - Size: `text-3xl md:text-5xl lg:text-6xl` — **never exceed `text-6xl` (3.75rem)**
+  - Size: `text-4xl md:text-6xl lg:text-7xl`
   - Per-character rise animation with staggered delay
   - Second line has accent-colored portion + accent `.` at end
+- Hero section should NOT be `min-h-screen`. Use `pt-24 pb-16 md:pt-32 md:pb-24` — avoid excessive empty space above the title.
 - 12-column grid below: lead paragraph (col-span-7, `text-lg md:text-xl leading-[1.7] text-foreground/80`) + meta (col-span-5, border-left)
 - **Stats row**: `grid-cols-2 md:grid-cols-4`, each stat has:
   - Numbered prefix (`01`, `02`...) + hairline
