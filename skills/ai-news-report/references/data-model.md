@@ -80,11 +80,12 @@ export const archives: ReportIssue[] = [ep1];
 
 Categories are **NOT fixed**. Analyze the fetched news content and derive 3-6 meaningful sections based on what actually happened during the time period. Common categories include but are not limited to:
 
-- Model Releases & Updates (模型发布)
+- Model Releases & Updates (模型更新)
+- Product Launches (产品发布)
 - AI Agents & Tools (智能体工具)
-- Product & Platform (产品动态)
-- Industry & Business (产业商业)
-- Funding & Valuation (融资估值)
+- Industry Trends (行业动态)
+- Big Tech Moves (大公司动向)
+- Funding & Investment (投融资事件)
 - Research & Papers (研究论文)
 - Regulation & Policy (监管政策)
 - Open Source (开源生态)
@@ -99,7 +100,7 @@ Categories are **NOT fixed**. Analyze the fetched news content and derive 3-6 me
 ## Content Rules
 
 1. **Every issue must be unique**: heroLead, heroLeadAccent, trendsLead, meta.description, and tickerHeadlines must all be generated fresh. Never copy from another issue.
-2. **Sections are flat**: 3-4 top-level categories only. No sub-categories.
+2. **Sections are flat**: 3-6 top-level categories only. No sub-categories.
 3. **L10n is mandatory**: Every user-facing text field uses `{ zh: "中文", en: "English" }`. English translations should be natural and professional, not literal.
 4. **Source attribution**: Every NewsItem should include the `url` field when available.
 5. **Highlights**: Mark 1-2 most significant items per section with `highlight: true`.
