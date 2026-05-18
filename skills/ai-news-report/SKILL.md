@@ -94,7 +94,7 @@ Create the `ReportIssue` object (see [references/data-model.md](references/data-
 1. **Edition**: "EP {N}" — auto-increment from existing archives
 2. **Range**: Format as "YYYY / MM / DD — MM / DD"
 3. **Site title**: Adapt to the time range — use "AI 日报/Daily" for 1 day, "AI 资讯/Report" for 2-6 days, "AI 周报/Weekly" only for exactly 7 days, "AI 月报/Monthly" for a full month. Do NOT hardcode "AI Weekly" for all cases.
-4. **heroLead + heroLeadAccent**: A short, punchy phrase — **max 15 Chinese characters total** (heroLead + heroLeadAccent combined). Do NOT write a full sentence. Examples: "开源狂潮" + "席卷而来.", "模型之战" + "白热化.", "Agent 元年" + "正式开启."
+4. **heroLead + heroLeadAccent**: A short, punchy phrase — **max 25 Chinese characters total** (heroLead + heroLeadAccent combined). Do NOT write a full paragraph. Examples: "万亿参数开源，" + "智能体工具链全面爆发.", "模型之战" + "白热化.", "开源加速，Agent 元年" + "正式开启."
 5. **Accent dot rule**: The trailing `.` (accent-colored dot) is the ONLY sentence-ending punctuation. Do NOT add Chinese "。" before it. Wrong: "正式拉开。." / Correct: "正式拉开."
 6. **trendsLead**: Brief intro to trends. Must be unique.
 7. **coreTrends**: 3-4 insights synthesized from the news
