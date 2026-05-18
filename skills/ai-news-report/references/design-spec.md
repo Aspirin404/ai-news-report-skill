@@ -143,7 +143,7 @@ body {
   background-size: 22px 22px;
   ```
 - Small kicker: `// Issue EP 1 · AI Industry Report` (adapt title based on time range — e.g. "Daily", "Report", "Digest", not always "Weekly")
-- Hero title: **4-6rem max** (NOT 10rem+). Bold, tight tracking, with accent-colored emphasis characters
+- Hero title: `text-5xl font-light leading-[1.05] tracking-[-0.03em] md:text-7xl lg:text-[9rem]`. Light weight, tight tracking, with accent-colored `.` dot at end
 - Title text should reflect the actual time range (e.g. "AI 日报", "AI 资讯", "AI 月报"), NOT hardcoded as "AI 周报" or "AI Weekly"
 - 12-column grid below: lead paragraph (col-span-7) + meta stats (col-span-5)
 - `AnimatedCounter` components with monospace labels
@@ -171,7 +171,7 @@ body {
 - One `<section>` per category
 - **Section header row**: Left = `// SECTION {index} · {SUBTITLE}` (mono, uppercase, wide tracking). Right = page counter `{current} / {total}` (mono)
 - **Section title**: 4xl-6xl, font-weight 300 (Light), accent-colored dot `.` appended at end of title (e.g. "模型发布.")
-- **Decorative background number**: Giant `01`/`02`/`03` (20-24rem), opacity 4-6%, font-weight 200, positioned behind right side. Creates depth layering.
+- **Decorative background number**: Giant `01`/`02`/`03` (`text-[16rem] md:text-[24rem]`), `text-foreground/[0.07]`, font-weight 300 (Light), tracking-tighter, positioned behind right side. Creates depth layering.
 - **Right sidebar meta** (desktop only): "ITEMS IN THIS SECTION" (mono, tiny, uppercase) + item count as large mono number
 - News cards in responsive grid (2-3 columns)
 
