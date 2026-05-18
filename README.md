@@ -6,11 +6,13 @@ A [Claude Code](https://code.claude.com) / [Enter Code](https://enter.pro/code) 
 
 - Fetches AI news from [aihot.virxact.com](https://aihot.virxact.com) public API (no API key needed)
 - Supports any time range: "last week", "May 1-15", "last 3 days", etc.
+- Dynamic site naming based on time range (日报/资讯/周报/月报)
 - Bilingual Chinese/English with one-click toggle
-- Swiss International Style: white background, bold typography, single accent color
-- Categorized news: Models, Products, Industry, Research
+- Swiss International Style: warm off-white background, extreme typographic contrast, single accent color
+- 4 accent color options: Klein Blue (default), Lemon Yellow, Lemon Green, Safety Orange
+- Dynamic content categories derived from actual news (3-6 sections)
 - Core trend analysis with synthesized insights
-- Scrolling ticker headlines
+- Scrolling ticker headlines, animated reveal, per-character hero animation
 - Responsive: mobile, tablet, desktop
 - Multi-issue archive with routing
 
@@ -81,12 +83,14 @@ ai-news-report-skill/
 
 The generated website follows Swiss International Style principles:
 
-- **White background** with pure black typography
-- **Single accent color** for highlights (customizable)
-- **Extreme type contrast** — hero titles at 10-12rem vs 14px body
-- **Monospace section markers** — `// Section 01 · Title`
+- **Warm off-white background** (`hsl(40 22% 96%)`) with dark typography
+- **Single accent color** — user picks from 4 options before generation
+- **Font-light at display sizes** — the bigger the text, the lighter the weight (300)
+- **Inter + Noto Sans SC + JetBrains Mono** with `font-feature-settings: "ss01", "cv11"`
+- **Monospace section markers** — `// SECTION 01 · TITLE`
 - **Dot grid** decoration in hero section only
 - **Hairline dividers** — 1px borders as structure
+- **Highlight via size** — KEY cards span 2 columns + accent border + accent tint
 - **No serif, no shadows, no gradients, no rounded corners**
 
 ## Data Source
