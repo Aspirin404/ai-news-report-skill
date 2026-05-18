@@ -4,11 +4,12 @@ description: >
   Generate an AI industry news report website. Fetches real-time AI news from the
   aihot public API for any user-specified time period, then builds a complete,
   responsive, bilingual (Chinese/English) news report website following Swiss
-  International Style design (white background, extreme typographic contrast, single
-  accent color, grid layout, hairline dividers). Trigger when the user says: "generate
-  AI news report", "生成 AI 资讯报告", "帮我做一个 AI 新闻网站", "create AI news website
-  for last week", "拉取最近一周的 AI 新闻", "make an AI report from May 1 to May 15",
-  or any request involving collecting AI news and presenting them as a styled website.
+  International Style design (warm off-white background, extreme typographic contrast,
+  single accent color, grid layout, hairline dividers). Trigger when the user says:
+  "generate AI news report", "生成 AI 资讯报告", "帮我做一个 AI 新闻网站", "create AI
+  news website for last week", "拉取最近一周的 AI 新闻", "make an AI report from May 1
+  to May 15", or any request involving collecting AI news and presenting them as a
+  styled website.
 when_to_use: >
   Use when the user wants to create a website that displays AI industry news for
   a specific time period. Also use for: "更新周报", "新一期周报", "weekly update",
@@ -18,10 +19,10 @@ when_to_use: >
 # AI News Report Generator
 
 Generate a complete AI industry news report website from any time period. The site
-follows **Swiss International Style** (瑞士国际主义): pure white background, extreme
-black typography contrast, single accent color, grid-based layout, hairline dividers,
-monospace meta labels. Responsive, bilingual (zh/en), with animated ticker headlines,
-core trend analysis, and categorized news cards.
+follows **Swiss International Style** (瑞士国际主义): warm off-white background, extreme
+typographic contrast (font-light at large sizes), single accent color, grid-based layout,
+hairline dividers, monospace meta labels. Responsive, bilingual (zh/en), with animated
+ticker headlines, core trend analysis, and categorized news cards.
 
 ## Resources
 

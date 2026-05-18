@@ -42,8 +42,10 @@ export interface CoreTrend {
 /** Report metadata */
 export interface ReportMeta {
   title: string;
+  edition: string;             // e.g. "EP 1"
+  range: string;               // e.g. "2026 / 05 / 11 — 05 / 17"
   description: L10n;
-  keywords: string[];
+  keywords: L10n[];            // clickable keyword tags in hero
   stats: Array<{ label: L10n; value: string }>;
 }
 
