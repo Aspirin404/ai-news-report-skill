@@ -80,7 +80,8 @@ Load via Google Fonts in `index.html`:
 Key weights used:
 - **300 (Light)**: Hero titles, section titles, stats numbers, decorative numbers
 - **400 (Regular)**: Body text, descriptions, meta labels
-- **500 (Medium)**: Card titles, emphasis text
+- **500 (Medium)**: Emphasis text, UI elements
+- **600 (Semibold)**: Card titles only
 - **600/700**: Sparingly — only small UI elements like badges (never on display text)
 
 Configure in Tailwind:
@@ -112,7 +113,7 @@ body {
 | Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Append accent-colored `.` dot at end (e.g. "模型发布.") |
 | Stats/Numbers | `font-mono text-6xl font-light tracking-[-0.04em] md:text-7xl` | JetBrains Mono, weight 300, tighter tracking than titles |
 | Section meta | `font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/50` | All labels, markers, chrome text |
-| Card titles | `text-xl font-medium leading-snug tracking-tight md:text-2xl` | Weight 500 — heavier than body but NOT bold |
+| Card titles | `text-xl font-semibold leading-snug tracking-tight md:text-2xl` | Weight 600 (Semibold) |
 | Card body text | `text-sm text-muted-foreground leading-relaxed md:text-base` | Weight 400, relaxed line-height |
 | Card source/footer | `font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50` | Same family as meta |
 | Card "READ ↗" link | `font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70 hover:text-accent` | Right-aligned, interactive |
@@ -177,59 +178,68 @@ body {
 
 #### News Card Grid Layout
 
-Highlighted items are emphasized through **SIZE + BORDER + BACKGROUND** differences:
+KEY items are in the wider left column, normal items in the narrower right column:
 
 ```
-┌──────────────────────────────┐  ┌──────────────────┐
-│  KEY item (large card)       │  │  Normal item     │
-│  ~60% width                  │  │  ~40% width      │
-│  white bg + visible border   │  │  gray bg, no     │
-│  more padding & whitespace   │  │  border, compact │
-└──────────────────────────────┘  └──────────────────┘
+grid-template-columns: 3fr 2fr (desktop)
 ```
-
-**KEY cards** (highlighted):
-- Wider column (`3fr`)
-- White background (`bg-background`)
-- Visible border (`border border-border`)
-- More internal padding and breathing room
-- `KEY` text label in accent color on top-right
-
-**Normal cards** (non-highlighted):
-- Narrower column (`2fr`)
-- Subtle gray background (`bg-muted` or `bg-muted/50`)
-- No visible border (borderless)
-- More compact padding
-
-Implementation: CSS grid with `grid-template-columns: 3fr 2fr` (desktop). KEY items left, normal items right.
 
 #### News Card Structure
 
-Each card is a bordered rectangle with clear visual hierarchy:
+All cards share the same structure. Differences between KEY and normal are in **border color, background tint, and tag style**:
 
-```
-┌─────────────────────────────────────────┐
-│ ● 01 · 05-12                    KEY     │  ← top strip (mono, uppercase)
-│                                         │
-│ Card Title Here                         │  ← weight 500 (Medium), 18-22px
-│                                         │
-│ Card body text lorem ipsum dolor sit    │  ← weight 400 (Regular), 14-16px
-│ amet, line-height 1.7-1.8, muted color │     line-height 1.7-1.8
-│                                         │
-│─────────────────────────────────────────│  ← hairline divider
-│ SOURCE NAME              READ ↗         │  ← mono, uppercase, 11-12px
-└─────────────────────────────────────────┘
+```tsx
+// Card wrapper
+<div className={cn(
+  "group relative flex h-full flex-col border bg-background p-6 transition-all duration-300 ease-out",
+  highlight
+    ? "border-accent bg-accent/[0.04] hover:-translate-y-0.5"
+    : "border-border hover:-translate-y-0.5 hover:border-foreground",
+)}>
 ```
 
-- **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) on left; `KEY` text on right for highlighted items only
-- **KEY indicator**: plain accent-colored text "KEY" (`text-accent font-mono text-[10px] uppercase tracking-[0.2em]`) — this is the ONLY text marker for importance.
-- **Title**: font-weight 500 (Medium), NOT bold/700.
-- **Body**: font-weight 400, muted foreground, relaxed line-height (1.7-1.8)
-- **Footer**: separated by a hairline divider (`border-t border-border`). Source name (mono, uppercase, muted) on left + "READ ↗" link on right
-- **KEY card style**: `bg-background border border-border` (white + border) — feels elevated
-- **Normal card style**: `bg-muted/50` (subtle gray, no border) — recedes visually
-- **Hover**: subtle `translateY(-2px)` lift + shadow
-- Links to sourceUrl when available
+**KEY (highlight) cards:**
+- Border: `border-accent` (accent-colored border)
+- Background: `bg-accent/[0.04]` (barely-there accent tint)
+- Hover: `-translate-y-0.5`
+- Dot: `bg-accent` (filled accent)
+- Tag: `bg-accent text-accent-foreground` (filled accent pill)
+- Shows `KEY` text label in accent color
+
+**Normal cards:**
+- Border: `border-border` (standard gray)
+- Background: `bg-background` (white)
+- Hover: `-translate-y-0.5 hover:border-foreground` (border darkens on hover)
+- Dot: `bg-foreground/30` (muted gray)
+- Tag: `bg-foreground text-background` (inverted black pill)
+- No KEY label
+
+#### Card Internal Structure
+
+```
+┌─────────────────────────────────────────────┐
+│ ● 01 · 05-12    [TAG]              KEY      │  ← top strip, border-b
+│                                             │
+│ Card Title Here                             │  ← font-semibold (600)
+│                                             │
+│ Body text in muted foreground               │  ← text-foreground/65
+│                                             │
+│ ┃ Extra context (optional, border-left)     │  ← blockquote-style extra
+│                                             │
+│─────────────────────────────────────────────│  ← border-t (mt-auto)
+│ SOURCE NAME                      READ ↗     │  ← footer
+└─────────────────────────────────────────────┘
+```
+
+- **Top strip**: `-mx-6 -mt-6 mb-5 border-b border-border px-6 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50`
+  - Left: dot (1×1 rounded-full) + index (zero-padded) + `·` + date
+  - Right: tag pill + KEY label (highlight only)
+- **Title**: `text-xl font-semibold leading-snug tracking-tight md:text-2xl` — weight 600, NOT 500/700
+- **Body**: `mt-3 text-[15px] leading-relaxed text-foreground/65 md:text-base md:leading-[1.7]`
+- **Extra** (optional): border-left blockquote style
+  - Highlight: `border-accent bg-accent/[0.06] text-foreground/85`
+  - Normal: `border-foreground/30 bg-secondary/40 text-foreground/75`
+- **Footer**: `mt-auto border-t border-border pt-4`, source (mono, uppercase, `text-foreground/55`) left + "READ ↗" (`text-foreground/70 group-hover:text-accent`) right
 
 ### 6. Side Navigation
 
