@@ -181,7 +181,7 @@ Each card is a bordered rectangle with clear visual hierarchy:
 
 ```
 ┌─────────────────────────────────────────┐
-│ ● 01 · 05-17              KEY           │  ← top strip (mono, uppercase)
+│ ● 01 · 05-12   [标签]           KEY     │  ← top strip (mono, uppercase)
 │                                         │
 │ Card Title Here                         │  ← weight 500 (Medium), 18-22px
 │                                         │
@@ -192,12 +192,13 @@ Each card is a bordered rectangle with clear visual hierarchy:
 └─────────────────────────────────────────┘
 ```
 
-- **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) on left; `KEY` badge on right for highlighted items (mono, uppercase)
+- **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) + optional tag pill on left; `KEY` text on right for highlighted items
+- **Tag pill**: outline border style (`border border-border rounded px-2 py-0.5 text-[10px] font-mono uppercase`), NOT filled background
+- **KEY indicator**: plain accent-colored text "KEY" (`text-accent font-mono text-[10px] uppercase tracking-[0.2em]`), NOT a filled badge, NOT a colored left border
 - **Title**: font-weight 500 (Medium), NOT bold/700. Heavier than body but still medium.
 - **Body**: font-weight 400, muted foreground, relaxed line-height (1.7-1.8)
 - **Footer**: source name (mono, uppercase, muted) on left + "READ ↗" link on right (mono, uppercase)
-- **Highlighted cards**: accent-colored left border (3-4px solid) — NOT full background tint
-- **Normal cards**: thin border (`border border-border`)
+- **All cards have identical borders**: `border border-border` — no special border treatment for highlighted items
 - **Hover**: subtle `translateY(-2px)` lift + shadow
 - Links to sourceUrl when available
 
