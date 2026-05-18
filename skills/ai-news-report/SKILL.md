@@ -31,6 +31,19 @@ core trend analysis, and categorized news cards.
 
 ## Generation Workflow
 
+### Step 0: Ask User for Accent Color
+
+Before starting any work, prompt the user to choose one accent color:
+
+> 请选择本期报告的主题色：
+> 1. 克莱因蓝 Klein Blue `#002FA7` （默认）
+> 2. 柠檬黄 Lemon Yellow `#FFD500`
+> 3. 柠檬绿 Lemon Green `#C5E803`
+> 4. 安全橙 Safety Orange `#FF6B35`
+
+If the user does not respond or says "默认"/"default", use Klein Blue.
+Apply the chosen color to `--accent` CSS variable throughout the site.
+
 ### Step 1: Parse Time Range
 
 Interpret the user's natural language time specification:
