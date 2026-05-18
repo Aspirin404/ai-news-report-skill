@@ -104,7 +104,7 @@ body {
 
 | Role | Tailwind Classes | Notes |
 |------|-----------------|-------|
-| Hero title | `text-[12vw] md:text-[8rem] lg:text-[10rem] font-bold leading-[0.92] tracking-[-0.04em]` | **Bold** at display size. Per-character stagger animation. Accent-colored portion + trailing `.` |
+| Hero title | `text-[12vw] md:text-[8rem] lg:text-[10rem] font-light leading-[0.92] tracking-[-0.04em]` | Weight 300 (Light). Per-character stagger animation. Accent-colored portion + trailing `.` |
 | Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Append accent `.` dot. |
 | Trend heading | `max-w-5xl text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Same as section titles |
 | Trend numbers | `text-5xl md:text-7xl font-light leading-none tracking-tighter` | accent color or foreground, hover → accent |
@@ -117,7 +117,7 @@ body {
 | Decorative bg nums | `font-mono font-light text-[16rem] md:text-[24rem] text-foreground/[0.07] tracking-tighter` | Behind section content |
 | Footer tagline | `text-5xl font-light leading-[1.05] tracking-[-0.03em] md:text-7xl lg:text-[9rem]` | Weight 300, like section titles |
 
-**Key rule: the bigger the text, the lighter the weight** — EXCEPT the hero title, which is intentionally `font-bold` for maximum impact at extreme scale. Section titles and all other large text use `font-light` (300).
+**Key rule: the bigger the text, the lighter the weight.** All large display text (hero, section titles, footer tagline, stats) uses `font-light` (300). Only card titles use semibold (600) at their smaller size.
 
 **No serif fonts anywhere.**
 
@@ -153,7 +153,7 @@ body {
   background-size: 22px 22px;
   ```
 - Bottom fade gradient: `bg-gradient-to-b from-transparent to-background`
-- **Hero title**: `font-bold leading-[0.92] tracking-[-0.04em]`
+- **Hero title**: `font-light leading-[0.92] tracking-[-0.04em]`
   - Size: `text-[12vw] md:text-[8rem] lg:text-[10rem]` (zh) / `text-[10vw] md:text-[7rem] lg:text-[9rem]` (en)
   - Per-character rise animation with staggered delay
   - Second line has accent-colored portion + accent `.` at end
