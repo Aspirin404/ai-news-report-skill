@@ -48,7 +48,7 @@ export interface ReportMeta {
 }
 
 /** A complete report issue */
-export interface WeeklyIssue {
+export interface ReportIssue {
   id: string;                  // slug, e.g. "ep1"
   edition: string;             // display name, e.g. "EP 1"
   range: string;               // e.g. "2026 / 05 / 11 — 05 / 17"
@@ -68,12 +68,12 @@ export interface WeeklyIssue {
 Data is stored in `src/lib/archives.ts`:
 
 ```typescript
-import type { WeeklyIssue } from './types';
+import type { ReportIssue } from './types';
 
-const ep1: WeeklyIssue = { /* ... */ };
+const ep1: ReportIssue = { /* ... */ };
 
 // Newest first
-export const archives: WeeklyIssue[] = [ep1];
+export const archives: ReportIssue[] = [ep1];
 ```
 
 ## Content Categories

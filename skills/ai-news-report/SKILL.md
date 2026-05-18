@@ -60,16 +60,17 @@ See [references/data-model.md](references/data-model.md) for category targets an
 
 ### Step 4: Generate Report Content
 
-Create the `WeeklyIssue` object (see [references/data-model.md](references/data-model.md) for types):
+Create the `ReportIssue` object (see [references/data-model.md](references/data-model.md) for types):
 
 1. **Edition**: "EP {N}" — auto-increment from existing archives
 2. **Range**: Format as "YYYY / MM / DD — MM / DD"
-3. **heroLead + heroLeadAccent**: One compelling sentence. Must be unique.
-4. **trendsLead**: Brief intro to trends. Must be unique.
-5. **coreTrends**: 3-4 insights synthesized from the news
-6. **meta**: Title, description, keywords, stats
-7. **sections**: 3-4 categorized news sections
-8. **tickerHeadlines**: 8-10 short headline phrases
+3. **Site title**: Adapt to the time range — use "AI 日报/Daily" for 1 day, "AI 资讯/Report" for 2-6 days, "AI 周报/Weekly" only for exactly 7 days, "AI 月报/Monthly" for a full month. Do NOT hardcode "AI Weekly" for all cases.
+4. **heroLead + heroLeadAccent**: One compelling sentence. Must be unique.
+5. **trendsLead**: Brief intro to trends. Must be unique.
+6. **coreTrends**: 3-4 insights synthesized from the news
+7. **meta**: Title, description, keywords, stats
+8. **sections**: 3-4 categorized news sections
+9. **tickerHeadlines**: 8-10 short headline phrases
 
 ### Step 5: Build the Website
 
@@ -83,7 +84,7 @@ Read [references/design-spec.md](references/design-spec.md) for the full visual 
 5. React Router + i18n context
 6. `tailwind.config.ts` with CSS variable color system + animation keyframes
 
-**Existing project** — just add the new `WeeklyIssue` to the front of `archives`.
+**Existing project** — just add the new `ReportIssue` to the front of `archives`.
 
 ### Step 6: Verify
 

@@ -86,9 +86,9 @@ highlighted hero text, trend keywords, pulsing indicator dots, section comment m
   background-image: radial-gradient(hsl(var(--foreground) / 0.18) 1px, transparent 1.4px);
   background-size: 22px 22px;
   ```
-- Small kicker: `// Issue EP 1 · AI Industry Weekly`
+- Small kicker: `// Issue EP 1 · AI Industry Report` (adapt title based on time range — e.g. "Daily", "Report", "Digest", not always "Weekly")
 - Hero title: **4-6rem max** (NOT 10rem+). Bold, tight tracking, with accent-colored emphasis characters
-- Accent-colored characters for emphasis (e.g. "周报" in accent)
+- Title text should reflect the actual time range (e.g. "AI 日报", "AI 资讯", "AI 月报"), NOT hardcoded as "AI 周报" or "AI Weekly"
 - 12-column grid below: lead paragraph (col-span-7) + meta stats (col-span-5)
 - `AnimatedCounter` components with monospace labels
 - Scroll-down arrow at bottom
