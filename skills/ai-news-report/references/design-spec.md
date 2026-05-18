@@ -66,7 +66,7 @@ Load via Google Fonts in `index.html`:
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+SC:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap"
   rel="stylesheet"
 />
 ```
@@ -76,6 +76,12 @@ Load via Google Fonts in `index.html`:
 | Sans-serif (latin) | **Inter** | system-ui, sans-serif |
 | Sans-serif (CJK) | **Noto Sans SC** | "PingFang SC", "Microsoft YaHei", sans-serif |
 | Monospace | **JetBrains Mono** | "SF Mono", "Fira Code", monospace |
+
+Key weights used:
+- **200 (ExtraLight)**: Hero titles at extreme sizes (5rem+)
+- **300 (Light)**: Section titles, large display text, stats numbers
+- **400 (Regular)**: Body text, descriptions
+- **500 (Medium)**: Emphasis text, card titles
 
 Configure in Tailwind:
 
@@ -102,11 +108,14 @@ body {
 
 | Role | Style |
 |------|-------|
-| Hero title | 4-6rem desktop / 10vw mobile, **bold**, tracking `-0.04em`, Inter/Noto Sans SC. Must NOT exceed 6rem. |
-| Section meta | JetBrains Mono, 10-11px, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
-| Body text | Inter/Noto Sans SC, 14-18px, relaxed line height |
-| Numbers/Stats | JetBrains Mono, large, used as visual anchors |
+| Hero title | 4-6rem desktop / 10vw mobile, **font-weight: 300 (Light)**, tracking `-0.03em`, Inter/Noto Sans SC. Must NOT exceed 6rem. **Larger type = lighter weight — this is the Swiss core rule.** |
+| Section titles | 2-4rem, font-weight 300 (Light), tracking `-0.03em` |
+| Section meta | JetBrains Mono, 10-11px, font-weight 400, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
+| Body text | Inter/Noto Sans SC, 14-18px, font-weight 300-400, relaxed line height |
+| Numbers/Stats | JetBrains Mono, large, font-weight 300 (Light), used as visual anchors |
 | Section markers | `// Section 01 · Title` pattern (JetBrains Mono, accent-colored `//`) |
+
+**Key rule: the bigger the text, the lighter the weight.** Hero and section titles must use weight 300 (Light), never 600/700/bold. This creates the elegant Swiss contrast: extreme size + hairline strokes. Bold at display sizes looks heavy and amateurish.
 
 **No serif fonts anywhere** — this is a hard rule.
 
