@@ -109,9 +109,11 @@ body {
 | Role | Style |
 |------|-------|
 | Hero title | 4-6rem desktop / 10vw mobile, **font-weight: 300 (Light)**, tracking `-0.03em`, Inter/Noto Sans SC. Must NOT exceed 6rem. **Larger type = lighter weight — this is the Swiss core rule.** |
-| Section titles | 2-4rem, font-weight 300 (Light), tracking `-0.03em` |
+| Section titles | 2-4rem, font-weight 300 (Light), tracking `-0.03em`. Append accent-colored `.` dot at end (e.g. "模型发布.") |
 | Section meta | JetBrains Mono, 10-11px, font-weight 400, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
-| Body text | Inter/Noto Sans SC, 14-18px, font-weight 300-400, relaxed line height |
+| Card titles | Inter/Noto Sans SC, 18-22px, font-weight 500 (Medium) — heavier than body but NOT bold |
+| Card body text | Inter/Noto Sans SC, 14-16px, font-weight 400 (Regular), line-height 1.7-1.8, color `hsl(var(--muted-foreground))` |
+| Card source/footer | JetBrains Mono, 11-12px, font-weight 400, uppercase, letter-spacing `0.15em`, muted color |
 | Numbers/Stats | JetBrains Mono, large, font-weight 300 (Light), used as visual anchors |
 | Section markers | `// Section 01 · Title` pattern (JetBrains Mono, accent-colored `//`) |
 
@@ -154,8 +156,8 @@ body {
 
 ### 4. Core Trends Section
 
-- Section meta: `// Section 00 · Core Trends`
-- Large heading (4xl-7xl): trendsLead with accent-colored words
+- Section meta: `// SECTION 00 · CORE TRENDS` (mono, uppercase, wide tracking)
+- Large heading (4xl-7xl), font-weight 300 (Light): trendsLead with accent-colored `.` dot at end
 - Supporting paragraph in muted foreground
 - Trend rows as a divided list (`divide-y divide-border border-y border-border`)
 - Each row: large number (accent), title, keyword pill, description
@@ -164,18 +166,37 @@ body {
 ### 5. News Sections
 
 - One `<section>` per category
-- Giant decorative section number in background (24rem, 4% opacity)
-- Section meta header: `// Section {index} · {subtitle}`
-- Large section title (4xl-6xl)
-- News cards in responsive grid
-- Each card:
-  - Top index strip: index + date (mono, uppercase) + tag badge + highlight badge
-  - Title in bold
-  - Summary in muted foreground
-  - Source attribution at bottom
-  - Highlighted cards: accent border + subtle accent background tint (`bg-accent/[0.04]`)
-  - Hover: `translateY(-0.5)` lift
-  - Links to sourceUrl when available
+- **Section header row**: Left = `// SECTION {index} · {SUBTITLE}` (mono, uppercase, wide tracking). Right = page counter `{current} / {total}` (mono)
+- **Section title**: 4xl-6xl, font-weight 300 (Light), accent-colored dot `.` appended at end of title (e.g. "模型发布.")
+- **Decorative background number**: Giant `01`/`02`/`03` (20-24rem), opacity 4-6%, font-weight 200, positioned behind right side. Creates depth layering.
+- **Right sidebar meta** (desktop only): "ITEMS IN THIS SECTION" (mono, tiny, uppercase) + item count as large mono number
+- News cards in responsive grid (2-3 columns)
+
+#### News Card Structure
+
+Each card is a bordered rectangle with clear visual hierarchy:
+
+```
+┌─────────────────────────────────────────┐
+│ ● 01 · 05-17              KEY           │  ← top strip (mono, uppercase)
+│                                         │
+│ Card Title Here                         │  ← weight 500 (Medium), 18-22px
+│                                         │
+│ Card body text lorem ipsum dolor sit    │  ← weight 400 (Regular), 14-16px
+│ amet, line-height 1.7-1.8, muted color │     line-height 1.7-1.8
+│                                         │
+│ SOURCE NAME              READ ↗         │  ← mono, uppercase, 11-12px
+└─────────────────────────────────────────┘
+```
+
+- **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) on left; `KEY` badge on right for highlighted items (mono, uppercase)
+- **Title**: font-weight 500 (Medium), NOT bold/700. Heavier than body but still medium.
+- **Body**: font-weight 400, muted foreground, relaxed line-height (1.7-1.8)
+- **Footer**: source name (mono, uppercase, muted) on left + "READ ↗" link on right (mono, uppercase)
+- **Highlighted cards**: accent-colored left border (3-4px solid) — NOT full background tint
+- **Normal cards**: thin border (`border border-border`)
+- **Hover**: subtle `translateY(-2px)` lift + shadow
+- Links to sourceUrl when available
 
 ### 6. Side Navigation
 
