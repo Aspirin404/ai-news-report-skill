@@ -3,21 +3,24 @@ name: ai-news-report
 description: >
   Generate an AI industry news report website. Fetches real-time AI news from the
   aihot public API for any user-specified time period, then builds a complete,
-  responsive, bilingual (Chinese/English) news report website with dark theme and
-  modern card-based design. Trigger when the user says: "generate AI news report",
-  "生成 AI 资讯报告", "帮我做一个 AI 新闻网站", "create AI news website for last week",
-  "拉取最近一周的 AI 新闻", "make an AI report from May 1 to May 15", or any request
-  involving collecting AI news and presenting them as a styled website.
-metadata:
-  version: 1.0.0
-  author: Aspirin404
-  license: MIT
+  responsive, bilingual (Chinese/English) news report website following Swiss
+  International Style design (white background, extreme typographic contrast, single
+  accent color, grid layout, hairline dividers). Trigger when the user says: "generate
+  AI news report", "生成 AI 资讯报告", "帮我做一个 AI 新闻网站", "create AI news website
+  for last week", "拉取最近一周的 AI 新闻", "make an AI report from May 1 to May 15",
+  or any request involving collecting AI news and presenting them as a styled website.
+when_to_use: >
+  Use when the user wants to create a website that displays AI industry news for
+  a specific time period. Also use for: "更新周报", "新一期周报", "weekly update",
+  "帮我看看这周 AI 圈发生了什么", "AI news digest", "AI 行业动态".
 ---
 
 # AI News Report Generator
 
 Generate a complete AI industry news report website from any time period. The site
-features a dark-themed, responsive design with bilingual (zh/en) support, animated
+follows **Swiss International Style** (瑞士国际主义) design principles: pure white
+background, extreme black typography contrast, single accent color, grid-based layout,
+hairline dividers, monospace meta labels. Responsive, bilingual (zh/en), with animated
 ticker headlines, core trend analysis, and categorized news cards.
 
 ## Data Source: aihot API
@@ -166,22 +169,50 @@ export const archives: WeeklyIssue[] = [ep1];
 ### Tech Stack
 - React 18+ with TypeScript
 - Vite as build tool
-- TailwindCSS for styling
+- TailwindCSS (with shadcn/ui CSS variable system)
 - React Router for client-side routing
 
-### Color Palette
+### Visual Style: Swiss International Style (瑞士国际主义)
 
-| Role | Value |
-|------|-------|
-| Background | `hsl(0, 0%, 4%)` — near-black |
-| Surface | `hsl(0, 0%, 8%)` — card backgrounds |
-| Surface Hover | `hsl(0, 0%, 12%)` |
-| Border | `hsl(0, 0%, 15%)` |
-| Primary / Accent | `#E83B6C` — vibrant pink |
-| Primary Hover | `#D42F5E` |
-| Text Primary | `hsl(0, 0%, 95%)` |
-| Text Secondary | `hsl(0, 0%, 65%)` |
-| Text Muted | `hsl(0, 0%, 45%)` |
+The design follows **Swiss International Style** principles — information-driven,
+grid-based, extreme typographic contrast, minimal decoration. Inspired by Massimo
+Vignelli, Josef Müller-Brockmann, and *Helvetica Forever*.
+
+**Core design principles** (violating any one will break the aesthetic):
+
+1. **Single accent color** — one brand highlight used sparingly, never multiple colors
+2. **Extreme type size contrast** — hero title vs body ratio >= 8:1
+3. **Sans-serif only** — system sans-serif + monospace for meta; no serif fonts
+4. **Flat and direct** — no gradients, no shadows, no rounded corners on content elements
+5. **Grid supremacy** — all elements align to a grid system, asymmetric whitespace
+6. **Hairline dividers** — 1px borders as structural separators
+7. **Dot grid decoration only in hero** — content pages stay clean
+
+### Color Palette (Light Theme)
+
+Uses CSS custom properties via `hsl(var(--name))` pattern:
+
+| Role | CSS Variable | Value |
+|------|-------------|-------|
+| Background | `--background` | `0 0% 100%` (pure white) |
+| Foreground | `--foreground` | `0 0% 0%` (pure black) |
+| Card | `--card` | `0 0% 100%` (white) |
+| Border | `--border` | `0 0% 89.8%` (light gray hairline) |
+| Muted | `--muted` | `0 0% 96.1%` (off-white) |
+| Muted Foreground | `--muted-foreground` | `0 0% 45.1%` (medium gray) |
+| Accent | `--accent` | Single brand color for all highlights |
+
+**High contrast black-on-white** is the foundation. The accent color is used only for:
+highlighted hero text, trend keywords, pulsing indicator dots, section comment markers
+(`// Section 01`), and important news badges. Never use multiple accent colors.
+
+### Typography
+
+- **Hero title**: Extremely large (10-12rem desktop, 15vw mobile), **bold**, tight tracking (`-0.04em`), sans-serif
+- **Section meta labels**: Monospace, 10-11px, uppercase, wide letter-spacing (`0.25-0.4em`), reduced opacity — the "Swiss comment" pattern: `// Section 01 · Title`
+- **Body text**: System sans-serif stack, 14-18px, relaxed line height
+- **Numbers/Stats**: Monospace, large weight, used as visual anchors
+- **No serif fonts anywhere** — this is a hard rule
 
 ### Page Structure & Routes
 
@@ -193,58 +224,87 @@ export const archives: WeeklyIssue[] = [ep1];
 
 ### Layout Components
 
-#### 1. Header / Navigation
-- Site title: "AI Weekly" or user-customized name
-- Language toggle button (zh ↔ en)
-- Link to `/archive`
-- Sticky top, blurred glass background
+#### 1. Top Chrome (Fixed Header)
+- Minimal fixed bar at the very top
+- Left: pulsing accent dot + site name + edition number
+- Right: date range
+- Monospace, tiny uppercase text, low opacity
+- Pointer-events none (decorative, not interactive)
 
 #### 2. Hero Section
-- Large heading with `heroLead` text, `heroLeadAccent` highlighted in pink
-- Edition badge (e.g. "EP 1") and date range
-- Meta stats row (e.g. "30+ news", "4 trends", "10 sources")
-- Subtle gradient or grid background pattern
+- Full viewport height (`min-h-screen`)
+- Subtle dot grid background pattern:
+  ```css
+  background-image: radial-gradient(hsl(var(--foreground) / 0.18) 1px, transparent 1.4px);
+  background-size: 22px 22px;
+  ```
+- Small kicker line: `// Issue EP 1 · AI Industry Weekly`
+- Massive title with per-character rise animation (staggered `animationDelay`)
+- Accent-colored characters for emphasis (e.g. "周报" in accent color)
+- Two-column grid below: lead paragraph (col-span-7) + meta stats (col-span-5)
+- Meta stats as `AnimatedCounter` components with monospace labels
+- Scroll-down arrow indicator at bottom
 
 #### 3. Ticker Bar
 - Horizontal auto-scrolling headlines from `tickerHeadlines`
-- Pink left accent bar
-- Infinite loop animation with CSS
+- Bordered top and bottom (`border-y border-border`)
+- Each headline: accent dot + index number + text
+- CSS `animate-marquee` for infinite horizontal scroll
+- Edge fade gradients on left and right
 
 #### 4. Core Trends Section
-- Section lead text from `trendsLead`
-- 3-4 trend cards in a grid
-- Each card: number badge (01, 02...), title, keyword pill, description
-- Pink accent on number and keyword
+- Section meta header: `// Section 00 · Core Trends` (monospace, uppercase)
+- Large heading (4xl-7xl): trendsLead text with accent-colored words
+- Supporting paragraph in muted foreground
+- Trend rows as a divided list (`divide-y divide-border border-y border-border`)
+- Each row: large number (accent color), title, keyword pill, description
+- Last row optionally has accent styling
+- Footer caption strip with stats
 
 #### 5. News Sections
-- One section per category (models / products / industry / research)
-- Section header with index number, title, subtitle
-- News items as cards in a responsive grid (1-col mobile, 2-col tablet, 3-col desktop)
-- Each card: date, title, summary, source tag, optional highlight badge
-- Highlighted cards get a pink left border or glow
-- Cards link to `url` (sourceUrl) when available
+- One `<section>` per category (models / products / industry / research)
+- Giant decorative section number in background (24rem, 4% opacity)
+- Section meta header with `// Section {index} · {subtitle}`
+- Large section title (4xl-6xl)
+- News cards in responsive grid
+- Each card:
+  - Top index strip: index number + date (mono, uppercase) + optional tag badge + highlight badge
+  - Title in bold
+  - Summary text in muted foreground
+  - Source attribution at bottom
+  - Highlighted cards: accent border, subtle accent background tint
+  - Hover: translateY(-0.5) lift effect
+  - Links to sourceUrl when available
 
-#### 6. Footer
-- "Built with Enter.pro" credit
-- Data source attribution: "Data from aihot.virxact.com"
+#### 6. Side Navigation
+- Fixed vertical nav on the left edge
+- Dot indicators for each section
+- Active section highlighted with accent color
+
+#### 7. Footer
+- Credits and data source attribution
+
+### Animations & Interactions
+
+- **Reveal on scroll**: Elements start `opacity: 0; translateY(24px)` and transition to visible
+  when entering viewport (IntersectionObserver-based `useReveal` hook)
+- **Character rise**: Hero title characters animate in with staggered delays
+- **Ticker marquee**: Infinite horizontal CSS animation
+- **Counter animation**: Stats count up on reveal
+- **Hover lift**: Cards translate up slightly on hover
+- **Pulse dot**: Small accent-colored dot with soft pulse animation
 
 ### Responsive Breakpoints
-- Mobile: < 640px — single column, stacked layout
-- Tablet: 640-1024px — 2-column news grid
-- Desktop: > 1024px — 3-column news grid, side-by-side trends
-
-### Animations
-- Fade-in on scroll for sections
-- Ticker infinite scroll
-- Hover lift effect on cards (translateY + shadow)
-- Smooth page transitions
+- Mobile: < 768px — single column, smaller hero text (15vw), stacked layout
+- Tablet: 768-1024px — 2-column news grid
+- Desktop: > 1024px — 3-column news grid, 12-column editorial grid layout
 
 ### Internationalization (i18n)
 - Default language: Chinese (zh)
-- Toggle to English (en) via button
-- Language state stored in React context or URL parameter
+- Toggle to English (en) via button in header
+- Language state stored in React context
 - All L10n fields rendered based on current language
-- Helper function: `t(l10n: L10n): string` returns text for current language
+- Helper: `t(l10n: L10n): string` returns text for current language
 
 ---
 
@@ -308,7 +368,7 @@ Create the `WeeklyIssue` object:
 
 1. **Edition**: "EP {N}" — auto-increment from existing archives
 2. **Range**: Format as "YYYY / MM / DD — MM / DD"
-3. **heroLead + heroLeadAccent**: One compelling sentence summarizing the period's biggest stories. Must be unique to this issue.
+3. **heroLead + heroLeadAccent**: One compelling sentence summarizing the period's biggest stories. Must be unique.
 4. **trendsLead**: Brief intro to the trends section. Must be unique.
 5. **coreTrends**: 3-4 trend insights synthesized from the news. Each with a catchy keyword.
 6. **meta**: Title, unique description, relevant keywords, stats (item count, trend count, source count)
@@ -319,24 +379,27 @@ Create the `WeeklyIssue` object:
 
 If this is a new project (no existing site structure), scaffold the full website:
 
-1. Set up Vite + React + TypeScript + TailwindCSS
-2. Create the type definitions in `src/lib/types.ts`
-3. Create the data file `src/lib/archives.ts`
-4. Build all page components:
-   - `src/components/Header.tsx` — nav with language toggle
-   - `src/components/HeroSection.tsx` — hero with lead text and stats
-   - `src/components/TickerBar.tsx` — scrolling headlines
-   - `src/components/CoreTrends.tsx` — trend cards grid
-   - `src/components/NewsSection.tsx` — categorized news cards
-   - `src/components/NewsCard.tsx` — individual news card
-   - `src/components/Footer.tsx` — credits
-5. Create pages:
-   - `src/pages/Home.tsx` — renders latest issue
-   - `src/pages/Archive.tsx` — grid of all issues
-   - `src/pages/IssueDetail.tsx` — renders specific issue by ID
-6. Set up React Router in `src/App.tsx`
-7. Create i18n context in `src/lib/i18n.tsx`
-8. Configure TailwindCSS with the color palette above
+1. Set up Vite + React + TypeScript + TailwindCSS (with shadcn/ui CSS variables)
+2. Create type definitions in `src/lib/types.ts`
+3. Create data file `src/lib/archives.ts`
+4. Build components following the editorial design spec above:
+   - `src/components/report/TopChrome.tsx`
+   - `src/components/report/Hero.tsx`
+   - `src/components/report/Ticker.tsx`
+   - `src/components/report/Trends.tsx`
+   - `src/components/report/ReportSection.tsx`
+   - `src/components/report/NewsCard.tsx`
+   - `src/components/report/SideNav.tsx`
+   - `src/components/report/Footer.tsx`
+   - `src/components/report/AnimatedCounter.tsx`
+5. Create `src/hooks/use-reveal.ts` for scroll-triggered reveal animations
+6. Create pages:
+   - `src/pages/Home.tsx` → renders latest issue
+   - `src/pages/Archive.tsx` → grid of all issues
+   - `src/pages/IssueDetail.tsx` → renders specific issue by ID
+7. Set up React Router in `src/App.tsx`
+8. Create i18n context in `src/lib/i18n.tsx`
+9. Configure `tailwind.config.ts` with the CSS variable color system and animation keyframes
 
 If the site already exists, just add the new `WeeklyIssue` to the front of the `archives` array.
 
