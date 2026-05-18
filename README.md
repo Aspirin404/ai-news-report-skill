@@ -100,7 +100,6 @@ All news data comes from [AI HOT](https://aihot.virxact.com), a free public AI n
 ## Credits
 
 - Design inspired by Swiss International Style, referencing [guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill)
-- Skill structure referencing [HyperFrames](https://github.com/heygen-com/hyperframes)
 
 ## License
 
