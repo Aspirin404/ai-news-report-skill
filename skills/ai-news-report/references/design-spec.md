@@ -177,20 +177,31 @@ body {
 
 #### News Card Grid Layout
 
-Highlighted items are emphasized through **SIZE, not color**. Use an asymmetric grid:
+Highlighted items are emphasized through **SIZE + BORDER + BACKGROUND** differences:
 
 ```
 ┌──────────────────────────────┐  ┌──────────────────┐
 │  KEY item (large card)       │  │  Normal item     │
-│  ~60% width, more padding   │  │  ~40% width      │
-│  more whitespace, breathing │  │  compact          │
-└──────────────────────────────┘  └──────────────────┘
-┌──────────────────────────────┐  ┌──────────────────┐
-│  KEY item (large card)       │  │  Normal item     │
+│  ~60% width                  │  │  ~40% width      │
+│  white bg + visible border   │  │  gray bg, no     │
+│  more padding & whitespace   │  │  border, compact │
 └──────────────────────────────┘  └──────────────────┘
 ```
 
-Implementation: CSS grid with `grid-template-columns: 3fr 2fr` (desktop). KEY items go in the left (wider) column, non-KEY items go in the right (narrower) column.
+**KEY cards** (highlighted):
+- Wider column (`3fr`)
+- White background (`bg-background`)
+- Visible border (`border border-border`)
+- More internal padding and breathing room
+- `KEY` text label in accent color on top-right
+
+**Normal cards** (non-highlighted):
+- Narrower column (`2fr`)
+- Subtle gray background (`bg-muted` or `bg-muted/50`)
+- No visible border (borderless)
+- More compact padding
+
+Implementation: CSS grid with `grid-template-columns: 3fr 2fr` (desktop). KEY items left, normal items right.
 
 #### News Card Structure
 
@@ -211,11 +222,12 @@ Each card is a bordered rectangle with clear visual hierarchy:
 ```
 
 - **Top strip**: accent dot `●` + zero-padded index + `·` + date (MM-DD) on left; `KEY` text on right for highlighted items only
-- **KEY indicator**: plain accent-colored text "KEY" (`text-accent font-mono text-[10px] uppercase tracking-[0.2em]`) — this is the ONLY visual marker for importance. No colored borders, no background tints.
+- **KEY indicator**: plain accent-colored text "KEY" (`text-accent font-mono text-[10px] uppercase tracking-[0.2em]`) — this is the ONLY text marker for importance.
 - **Title**: font-weight 500 (Medium), NOT bold/700.
 - **Body**: font-weight 400, muted foreground, relaxed line-height (1.7-1.8)
 - **Footer**: separated by a hairline divider (`border-t border-border`). Source name (mono, uppercase, muted) on left + "READ ↗" link on right
-- **All cards have identical border style**: `border border-border` — the SIZE difference (grid position) conveys importance, not border styling
+- **KEY card style**: `bg-background border border-border` (white + border) — feels elevated
+- **Normal card style**: `bg-muted/50` (subtle gray, no border) — recedes visually
 - **Hover**: subtle `translateY(-2px)` lift + shadow
 - Links to sourceUrl when available
 
