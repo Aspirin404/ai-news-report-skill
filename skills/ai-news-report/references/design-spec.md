@@ -104,7 +104,7 @@ body {
 
 | Role | Tailwind Classes | Notes |
 |------|-----------------|-------|
-| Hero title | `text-[12vw] md:text-[8rem] lg:text-[10rem] font-light leading-[0.92] tracking-[-0.04em]` | Weight 300 (Light). Per-character stagger animation. Accent-colored portion + trailing `.` |
+| Hero title | `text-4xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em]` | Weight 300 (Light). Per-character stagger animation. Accent-colored portion + trailing `.` |
 | Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Append accent `.` dot. |
 | Trend heading | `max-w-5xl text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Same as section titles |
 | Trend numbers | `text-5xl md:text-7xl font-light leading-none tracking-tighter` | accent color or foreground, hover → accent |
@@ -153,8 +153,8 @@ body {
   background-size: 22px 22px;
   ```
 - Bottom fade gradient: `bg-gradient-to-b from-transparent to-background`
-- **Hero title**: `font-light leading-[0.92] tracking-[-0.04em]`
-  - Size: `text-[12vw] md:text-[8rem] lg:text-[10rem]` (zh) / `text-[10vw] md:text-[7rem] lg:text-[9rem]` (en)
+- **Hero title**: `font-light leading-[1.05] tracking-[-0.03em]`
+  - Size: `text-4xl md:text-6xl lg:text-7xl` (zh) / `text-3xl md:text-5xl lg:text-6xl` (en)
   - Per-character rise animation with staggered delay
   - Second line has accent-colored portion + accent `.` at end
 - 12-column grid below: lead paragraph (col-span-7, `text-lg md:text-xl leading-[1.7] text-foreground/80`) + meta (col-span-5, border-left)
