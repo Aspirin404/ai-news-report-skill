@@ -24,8 +24,8 @@ export interface NewsItem {
 
 /** A news section (one category) */
 export interface ReportSection {
-  id: string;                  // "models" | "products" | "industry" | "research"
-  index: string;               // "01" | "02" | "03" | "04"
+  id: string;                  // dynamic, e.g. "models", "agents", "funding", "regulation"
+  index: string;               // "01" | "02" | "03" ...
   title: L10n;
   subtitle?: L10n;
   items: NewsItem[];
@@ -78,14 +78,23 @@ export const archives: ReportIssue[] = [ep1];
 
 ## Content Categories
 
-| Category | Section ID | Target count |
-|----------|-----------|-------------|
-| Model Releases & Updates | `models` | 8-10 items |
-| Product & Platform Updates | `products` | 8-10 items |
-| Industry & Business | `industry` | 6-8 items |
-| Research & Papers | `research` | 4-6 items |
+Categories are **NOT fixed**. Analyze the fetched news content and derive 3-6 meaningful sections based on what actually happened during the time period. Common categories include but are not limited to:
 
-**Total: 30-40 curated items per issue.**
+- Model Releases & Updates (模型发布)
+- AI Agents & Tools (智能体工具)
+- Product & Platform (产品动态)
+- Industry & Business (产业商业)
+- Funding & Valuation (融资估值)
+- Research & Papers (研究论文)
+- Regulation & Policy (监管政策)
+- Open Source (开源生态)
+- Hardware & Compute (算力硬件)
+
+**Rules:**
+- Choose 3-6 categories per issue based on actual content density
+- Each section should have at least 4 items; merge sparse categories
+- Name sections descriptively — don't force content into predefined buckets
+- Total: 25-40 curated items per issue
 
 ## Content Rules
 

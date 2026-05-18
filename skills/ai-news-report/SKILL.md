@@ -50,7 +50,7 @@ the daily digest endpoint and the batch items endpoint, then merge results.
 
 ### Step 3: Filter & Curate
 
-From the fetched data, select 30-40 items across 3-4 categories. For each item:
+From the fetched data, select 25-40 items. Analyze content and derive 3-6 meaningful categories based on what actually happened (don't force into predefined buckets). For each item:
 - Translate title and summary to both zh and en
 - Preserve the original `sourceUrl`
 - Mark 1-2 most important items per section as `highlight: true`
@@ -69,7 +69,7 @@ Create the `ReportIssue` object (see [references/data-model.md](references/data-
 5. **trendsLead**: Brief intro to trends. Must be unique.
 6. **coreTrends**: 3-4 insights synthesized from the news
 7. **meta**: Title, description, keywords, stats
-8. **sections**: 3-4 categorized news sections
+8. **sections**: 3-6 categorized news sections (derived from content, not fixed)
 9. **tickerHeadlines**: 8-10 short headline phrases
 
 ### Step 5: Build the Website
