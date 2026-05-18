@@ -97,6 +97,11 @@ The generated website follows Swiss International Style principles:
 
 All news data comes from [AI HOT](https://aihot.virxact.com), a free public AI news aggregation service. No authentication required.
 
+## Credits
+
+- Design inspired by Swiss International Style, referencing [guizang-ppt-skill](https://github.com/op7418/guizang-ppt-skill)
+- Skill structure referencing [HyperFrames](https://github.com/heygen-com/hyperframes)
+
 ## License
 
 MIT
