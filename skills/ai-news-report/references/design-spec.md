@@ -66,7 +66,7 @@ Load via Google Fonts in `index.html`:
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Noto+Sans+SC:wght@200;300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
   rel="stylesheet"
 />
 ```
@@ -78,17 +78,17 @@ Load via Google Fonts in `index.html`:
 | Monospace | **JetBrains Mono** | "SF Mono", "Fira Code", monospace |
 
 Key weights used:
-- **200 (ExtraLight)**: Hero titles at extreme sizes (5rem+)
-- **300 (Light)**: Section titles, large display text, stats numbers
-- **400 (Regular)**: Body text, descriptions
-- **500 (Medium)**: Emphasis text, card titles
+- **300 (Light)**: Hero titles, section titles, stats numbers, decorative numbers
+- **400 (Regular)**: Body text, descriptions, meta labels
+- **500 (Medium)**: Card titles, emphasis text
+- **600/700**: Sparingly — only small UI elements like badges (never on display text)
 
 Configure in Tailwind:
 
 ```ts
 fontFamily: {
   sans: ['"Inter"', '"Noto Sans SC"', 'system-ui', 'sans-serif'],
-  mono: ['"JetBrains Mono"', '"SF Mono"', '"Fira Code"', 'monospace'],
+  mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
 }
 ```
 
@@ -101,23 +101,26 @@ body {
 }
 ```
 
-- `ss01`: Inter stylistic set (open digits)
-- `cv11`: Inter character variant (single-storey a)
+- `ss01`: Inter stylistic set (open digits — 6, 9 more geometric)
+- `cv11`: Inter character variant (single-storey `a`)
 
-### Type Scale
+### Type Scale (Exact Tailwind Classes)
 
-| Role | Style |
-|------|-------|
-| Hero title | 4-6rem desktop / 10vw mobile, **font-weight: 300 (Light)**, tracking `-0.03em`, Inter/Noto Sans SC. Must NOT exceed 6rem. **Larger type = lighter weight — this is the Swiss core rule.** |
-| Section titles | 2-4rem, font-weight 300 (Light), tracking `-0.03em`. Append accent-colored `.` dot at end (e.g. "模型发布.") |
-| Section meta | JetBrains Mono, 10-11px, font-weight 400, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
-| Card titles | Inter/Noto Sans SC, 18-22px, font-weight 500 (Medium) — heavier than body but NOT bold |
-| Card body text | Inter/Noto Sans SC, 14-16px, font-weight 400 (Regular), line-height 1.7-1.8, color `hsl(var(--muted-foreground))` |
-| Card source/footer | JetBrains Mono, 11-12px, font-weight 400, uppercase, letter-spacing `0.15em`, muted color |
-| Numbers/Stats | JetBrains Mono, large, font-weight 300 (Light), used as visual anchors |
-| Section markers | `// Section 01 · Title` pattern (JetBrains Mono, accent-colored `//`) |
+| Role | Tailwind Classes | Notes |
+|------|-----------------|-------|
+| Hero title | `text-5xl font-light leading-[1.05] tracking-[-0.03em] md:text-7xl lg:text-[9rem]` | Inter/Noto Sans SC, weight 300. Never exceed `text-[9rem]`. **Larger type = lighter weight.** |
+| Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Append accent-colored `.` dot at end (e.g. "模型发布.") |
+| Stats/Numbers | `font-mono text-6xl font-light tracking-[-0.04em] md:text-7xl` | JetBrains Mono, weight 300, tighter tracking than titles |
+| Section meta | `font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/50` | All labels, markers, chrome text |
+| Card titles | `text-xl font-medium leading-snug tracking-tight md:text-2xl` | Weight 500 — heavier than body but NOT bold |
+| Card body text | `text-sm text-muted-foreground leading-relaxed md:text-base` | Weight 400, relaxed line-height |
+| Card source/footer | `font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/50` | Same family as meta |
+| Card "READ ↗" link | `font-mono text-[10px] uppercase tracking-[0.25em] text-foreground/70 hover:text-accent` | Right-aligned, interactive |
+| Decorative bg numbers | `font-mono font-light text-[16rem] md:text-[24rem] text-foreground/[0.07] tracking-tighter` | Giant, nearly invisible, positioned behind content |
+| Section markers | `font-mono text-[10px] uppercase tracking-[0.3em] text-foreground/50` | Pattern: `// SECTION 01 · TITLE` |
+| Ticker headlines | `font-mono text-xs uppercase tracking-[0.25em] text-foreground/70` | Scrolling bar items |
 
-**Key rule: the bigger the text, the lighter the weight.** Hero and section titles must use weight 300 (Light), never 600/700/bold. This creates the elegant Swiss contrast: extreme size + hairline strokes. Bold at display sizes looks heavy and amateurish.
+**Key rule: the bigger the text, the lighter the weight.** Hero and section titles MUST use `font-light` (300), never bold. Stats numbers MUST use `font-mono font-light`. This creates the elegant Swiss contrast: extreme size + hairline strokes.
 
 **No serif fonts anywhere** — this is a hard rule.
 
