@@ -34,19 +34,31 @@ ticker headlines, core trend analysis, and categorized news cards.
 
 ### Step 0: Ask User for Accent Color (MANDATORY — DO NOT SKIP)
 
-**You MUST ask the user to choose an accent color and WAIT for their response before proceeding to any other step.** Do NOT assume a default. Do NOT skip this step. Do NOT start fetching data or scaffolding until the user has explicitly answered.
+**You MUST use the `AskUserQuestion` tool to let the user choose an accent color.** This provides clickable option cards instead of plain text. Do NOT skip this step. Do NOT start fetching data or scaffolding until the user has clicked an option.
 
-Ask exactly this:
+Use this exact tool call:
 
-> 请选择本期报告的主题色：
-> 1. 克莱因蓝 Klein Blue `#002FA7` （默认）
-> 2. 柠檬黄 Lemon Yellow `#FFD500`
-> 3. 柠檬绿 Lemon Green `#C5E803`
-> 4. 安全橙 Safety Orange `#FF6B35`
->
-> 输入数字 1-4 或颜色名称，直接回车使用默认克莱因蓝。
+```json
+{
+  "questions": [{
+    "question": "请选择本期报告的主题色",
+    "header": "主题色",
+    "multiSelect": false,
+    "options": [
+      { "label": "克莱因蓝 Klein Blue #002FA7 (Recommended)", "description": "权威、理性、经典克莱因蓝" },
+      { "label": "柠檬黄 Lemon Yellow #FFD500", "description": "活力、乐观、醒目亮黄" },
+      { "label": "柠檬绿 Lemon Green #C5E803", "description": "清新、创新、科技感绿" },
+      { "label": "安全橙 Safety Orange #FF6B35", "description": "紧迫、大胆、高能量橙" }
+    ]
+  }]
+}
+```
 
-Only after the user responds (or explicitly says "默认"/"default"/"1"), proceed with the chosen color applied to `--accent` CSS variable.
+After the user selects, map their choice to the `--accent` CSS variable:
+- Klein Blue → `hsl(230 95% 56%)`
+- Lemon Yellow → `hsl(49 100% 50%)`
+- Lemon Green → `hsl(71 97% 46%)`
+- Safety Orange → `hsl(16 100% 60%)`
 
 ### Step 1: Parse Time Range
 
