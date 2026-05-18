@@ -104,8 +104,8 @@ body {
 
 | Role | Tailwind Classes | Notes |
 |------|-----------------|-------|
-| Hero title | `text-4xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em]` | Weight 300 (Light). Per-character stagger animation. Accent-colored portion + trailing `.` |
-| Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Append accent `.` dot. |
+| Hero title | `text-4xl md:text-6xl lg:text-7xl font-light leading-[1.05] tracking-[-0.03em]` | Weight 300 (Light). Short phrase only (max 15 zh chars). Accent `.` is the ONLY ending punctuation — never "。." |
+| Section titles | `text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Weight 300. Accent `.` replaces any Chinese "。" — never both. |
 | Trend heading | `max-w-5xl text-4xl font-light leading-[1.05] tracking-[-0.03em] md:text-6xl lg:text-7xl` | Same as section titles |
 | Trend numbers | `text-5xl md:text-7xl font-light leading-none tracking-tighter` | accent color or foreground, hover → accent |
 | Trend titles | `text-xl font-medium leading-snug tracking-tight md:text-2xl` | Weight 500 |
