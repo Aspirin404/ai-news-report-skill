@@ -32,18 +32,21 @@ ticker headlines, core trend analysis, and categorized news cards.
 
 ## Generation Workflow
 
-### Step 0: Ask User for Accent Color
+### Step 0: Ask User for Accent Color (MANDATORY — DO NOT SKIP)
 
-Before starting any work, prompt the user to choose one accent color:
+**You MUST ask the user to choose an accent color and WAIT for their response before proceeding to any other step.** Do NOT assume a default. Do NOT skip this step. Do NOT start fetching data or scaffolding until the user has explicitly answered.
+
+Ask exactly this:
 
 > 请选择本期报告的主题色：
 > 1. 克莱因蓝 Klein Blue `#002FA7` （默认）
 > 2. 柠檬黄 Lemon Yellow `#FFD500`
 > 3. 柠檬绿 Lemon Green `#C5E803`
 > 4. 安全橙 Safety Orange `#FF6B35`
+>
+> 输入数字 1-4 或颜色名称，直接回车使用默认克莱因蓝。
 
-If the user does not respond or says "默认"/"default", use Klein Blue.
-Apply the chosen color to `--accent` CSS variable throughout the site.
+Only after the user responds (or explicitly says "默认"/"default"/"1"), proceed with the chosen color applied to `--accent` CSS variable.
 
 ### Step 1: Parse Time Range
 
