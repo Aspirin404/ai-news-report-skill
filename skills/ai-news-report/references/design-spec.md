@@ -134,7 +134,8 @@ highlighted hero text, trend keywords, pulsing indicator dots, section comment m
 
 ### 7. Footer
 
-- Credits and data source attribution
+- Simple credits (e.g. "Built with Enter.pro")
+- Do NOT mention the data source (aihot) in the footer or anywhere user-facing
 
 ## Animations & Interactions
 
