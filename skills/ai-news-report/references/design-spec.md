@@ -58,13 +58,55 @@ highlighted hero text, trend keywords, pulsing indicator dots, section comment m
 
 ## Typography
 
+### Font Stack (Required)
+
+Load via Google Fonts in `index.html`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@300;400;500&display=swap"
+  rel="stylesheet"
+/>
+```
+
+| Role | Font | Fallback |
+|------|------|----------|
+| Sans-serif (latin) | **Inter** | system-ui, sans-serif |
+| Sans-serif (CJK) | **Noto Sans SC** | "PingFang SC", "Microsoft YaHei", sans-serif |
+| Monospace | **JetBrains Mono** | "SF Mono", "Fira Code", monospace |
+
+Configure in Tailwind:
+
+```ts
+fontFamily: {
+  sans: ['"Inter"', '"Noto Sans SC"', 'system-ui', 'sans-serif'],
+  mono: ['"JetBrains Mono"', '"SF Mono"', '"Fira Code"', 'monospace'],
+}
+```
+
+Body CSS:
+
+```css
+body {
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+```
+
+- `ss01`: Inter stylistic set (open digits)
+- `cv11`: Inter character variant (single-storey a)
+
+### Type Scale
+
 | Role | Style |
 |------|-------|
-| Hero title | 4-6rem desktop / 10vw mobile, **bold**, tracking `-0.04em`, sans-serif. Must NOT exceed 6rem — oversized type breaks the Swiss balance. |
-| Section meta | Monospace, 10-11px, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
-| Body text | System sans-serif, 14-18px, relaxed line height |
-| Numbers/Stats | Monospace, large, used as visual anchors |
-| Section markers | `// Section 01 · Title` pattern (monospace, accent-colored `//`) |
+| Hero title | 4-6rem desktop / 10vw mobile, **bold**, tracking `-0.04em`, Inter/Noto Sans SC. Must NOT exceed 6rem. |
+| Section meta | JetBrains Mono, 10-11px, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
+| Body text | Inter/Noto Sans SC, 14-18px, relaxed line height |
+| Numbers/Stats | JetBrains Mono, large, used as visual anchors |
+| Section markers | `// Section 01 · Title` pattern (JetBrains Mono, accent-colored `//`) |
 
 **No serif fonts anywhere** — this is a hard rule.
 
