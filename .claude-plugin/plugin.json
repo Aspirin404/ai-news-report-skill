@@ -1,0 +1,12 @@
+{
+  "name": "ai-news-report",
+  "description": "AI News Report Generator. Fetches AI industry news from aihot API and builds a complete bilingual website following Swiss International Style design.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Aspirin404",
+    "url": "https://github.com/Aspirin404"
+  },
+  "homepage": "https://github.com/Aspirin404/ai-news-report-skill",
+  "repository": "https://github.com/Aspirin404/ai-news-report-skill",
+  "license": "MIT"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "ai-news-report",
+  "owner": {
+    "name": "Aspirin404",
+    "url": "https://github.com/Aspirin404"
+  },
+  "plugins": [
+    {
+      "name": "ai-news-report",
+      "source": "./",
+      "description": "AI News Report Generator. Fetches AI industry news and builds a complete bilingual website following Swiss International Style design.",
+      "version": "1.0.0",
+      "homepage": "https://github.com/Aspirin404/ai-news-report-skill",
+      "license": "MIT"
+    }
+  ]
+}

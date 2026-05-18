@@ -1,46 +1,55 @@
 # AI News Report Skill
 
-An [Enter.pro](https://enter.pro) skill that generates AI industry news report websites. Specify any time period, and the project AI will fetch real-time AI news, curate the most important stories, and build a complete bilingual (zh/en) website with a modern dark-themed design.
+A [Claude Code](https://code.claude.com) / [Enter Code](https://enter.pro/code) plugin that generates AI industry news report websites. Specify any time period, and the AI will fetch real-time news, curate the most important stories, and build a complete bilingual (zh/en) website following Swiss International Style design.
 
 ## Features
 
 - Fetches AI news from [aihot.virxact.com](https://aihot.virxact.com) public API (no API key needed)
 - Supports any time range: "last week", "May 1-15", "last 3 days", etc.
 - Bilingual Chinese/English with one-click toggle
-- Dark theme with pink accent design
+- Swiss International Style: white background, bold typography, single accent color
 - Categorized news: Models, Products, Industry, Research
-- Core trend analysis
+- Core trend analysis with synthesized insights
 - Scrolling ticker headlines
 - Responsive: mobile, tablet, desktop
 - Multi-issue archive with routing
 
+## Install
+
+### As a Claude Code / Enter Code Plugin
+
+```bash
+claude plugin add https://github.com/Aspirin404/ai-news-report-skill
+```
+
+### Manual Install
+
+```bash
+# Personal (all projects)
+mkdir -p ~/.claude/skills/ai-news-report/references
+curl -o ~/.claude/skills/ai-news-report/SKILL.md \
+  https://raw.githubusercontent.com/Aspirin404/ai-news-report-skill/main/skills/ai-news-report/SKILL.md
+curl -o ~/.claude/skills/ai-news-report/references/api.md \
+  https://raw.githubusercontent.com/Aspirin404/ai-news-report-skill/main/skills/ai-news-report/references/api.md
+curl -o ~/.claude/skills/ai-news-report/references/data-model.md \
+  https://raw.githubusercontent.com/Aspirin404/ai-news-report-skill/main/skills/ai-news-report/references/data-model.md
+curl -o ~/.claude/skills/ai-news-report/references/design-spec.md \
+  https://raw.githubusercontent.com/Aspirin404/ai-news-report-skill/main/skills/ai-news-report/references/design-spec.md
+
+# Or project-level
+mkdir -p .claude/skills/ai-news-report/references
+# ... same curl commands with .claude/ prefix
+```
+
 ## Quick Start
 
-In your Enter.pro project, say:
+After installation, say:
 
 > "帮我生成上周的 AI 资讯报告"
 
 or
 
 > "Generate an AI news report for May 1 to May 15"
-
-The project AI will automatically fetch data and build the complete website.
-
-## Install
-
-### In Enter.pro
-
-Copy `SKILL.md` into your project's `skills/ai-news-report/` directory, or tell the project AI:
-
-> "Install this skill: https://github.com/Aspirin404/ai-news-report-skill"
-
-### In Claude Code / Codex CLI
-
-```bash
-mkdir -p ~/.claude/skills/ai-news-report
-curl -o ~/.claude/skills/ai-news-report/SKILL.md \
-  https://raw.githubusercontent.com/Aspirin404/ai-news-report-skill/main/SKILL.md
-```
 
 ## Example Triggers
 
@@ -49,16 +58,36 @@ curl -o ~/.claude/skills/ai-news-report/SKILL.md \
 - "拉取最近 3 天的 AI 新闻做个网站"
 - "Create an AI news website from May 1 to May 15"
 - "做一个本月的 AI 行业动态网站"
+- "AI news digest" / "AI 行业动态"
 
-## Design Preview
+## Repo Structure
 
-The generated website features:
+```
+ai-news-report-skill/
+├── .claude-plugin/
+│   ├── plugin.json              ← Plugin metadata
+│   └── marketplace.json         ← Marketplace listing
+├── skills/
+│   └── ai-news-report/
+│       ├── SKILL.md             ← Main skill (workflow + references)
+│       └── references/
+│           ├── api.md           ← aihot API endpoints & response formats
+│           ├── data-model.md    ← TypeScript types & content rules
+│           └── design-spec.md   ← Swiss Style design specification
+└── README.md
+```
 
-- **Hero Section** — Key headline with edition badge and stats
-- **Ticker Bar** — Auto-scrolling headline ticker
-- **Core Trends** — 3-4 synthesized trend cards
-- **News Grid** — Categorized cards with highlights
-- **Dark Theme** — `#0A0A0A` background + `#E83B6C` pink accent
+## Design
+
+The generated website follows Swiss International Style principles:
+
+- **White background** with pure black typography
+- **Single accent color** for highlights (customizable)
+- **Extreme type contrast** — hero titles at 10-12rem vs 14px body
+- **Monospace section markers** — `// Section 01 · Title`
+- **Dot grid** decoration in hero section only
+- **Hairline dividers** — 1px borders as structure
+- **No serif, no shadows, no gradients, no rounded corners**
 
 ## Data Source
 
