@@ -36,17 +36,31 @@ Uses CSS custom properties via `hsl(var(--name))` pattern:
 | Border | `--border` | `0 0% 89.8%` (light gray hairline) |
 | Muted | `--muted` | `0 0% 96.1%` (off-white) |
 | Muted Foreground | `--muted-foreground` | `0 0% 45.1%` (medium gray) |
-| Accent | `--accent` | Single brand color for all highlights |
+| Accent | `--accent` | One of the four Swiss accent colors below |
+
+### Accent Color System
+
+Choose **exactly one** accent color per site. Default is Klein Blue (IKB).
+
+| Name | Hex | HSL | When to use |
+|------|-----|-----|-------------|
+| **Klein Blue (IKB)** | `#002FA7` | `222 100% 33%` | Default. Authoritative, intellectual |
+| Lemon Yellow | `#FFD500` | `49 100% 50%` | Energetic, optimistic |
+| Lemon Green | `#C5E803` | `71 97% 46%` | Fresh, innovative |
+| Safety Orange | `#FF6B35` | `16 100% 60%` | Urgent, bold |
+
+If the user does not specify a preference, use **Klein Blue** (`#002FA7`).
+Never mix multiple accent colors in one site.
 
 **High contrast black-on-white** is the foundation. The accent color is used only for:
 highlighted hero text, trend keywords, pulsing indicator dots, section comment markers
-(`// Section 01`), and important news badges. Never use multiple accent colors.
+(`// Section 01`), and important news badges.
 
 ## Typography
 
 | Role | Style |
 |------|-------|
-| Hero title | 10-12rem desktop / 15vw mobile, **bold**, tracking `-0.04em`, sans-serif |
+| Hero title | 4-6rem desktop / 10vw mobile, **bold**, tracking `-0.04em`, sans-serif. Must NOT exceed 6rem — oversized type breaks the Swiss balance. |
 | Section meta | Monospace, 10-11px, uppercase, letter-spacing `0.25-0.4em`, reduced opacity |
 | Body text | System sans-serif, 14-18px, relaxed line height |
 | Numbers/Stats | Monospace, large, used as visual anchors |
@@ -73,7 +87,7 @@ highlighted hero text, trend keywords, pulsing indicator dots, section comment m
   background-size: 22px 22px;
   ```
 - Small kicker: `// Issue EP 1 · AI Industry Weekly`
-- Massive title with per-character rise animation (staggered `animationDelay`)
+- Hero title: **4-6rem max** (NOT 10rem+). Bold, tight tracking, with accent-colored emphasis characters
 - Accent-colored characters for emphasis (e.g. "周报" in accent)
 - 12-column grid below: lead paragraph (col-span-7) + meta stats (col-span-5)
 - `AnimatedCounter` components with monospace labels
